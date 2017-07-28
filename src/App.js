@@ -5,6 +5,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      playerTurn: 'X'
 
     };
   }
@@ -13,7 +14,7 @@ class App extends Component {
       <div>
         <div id="board">
           <div className="row">
-            <Square num={0} />
+            <Square num={this.state.playerTurn} />
             <Square num={1} />
             <Square num={2} />
           </div>
