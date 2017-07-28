@@ -5,25 +5,50 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      playerTurn: 'X'
+      playerTurn: ''
+
+    };
+    this.onClick = this.onClick.bind(this);
 
     }
-  }
-  renderSquare(i){
-    return <Square num={i}/>
-  }
-  clickHandler(target){
-    
-  }
+renderMove(i){
+  return <Square num={i} />
+
+}
+
+    onClick(e) {
+      console.log(e);
+      const pos = e.target.innerHTML;
+      console.log(pos);
+      if(!pos){
+        this.renderMove(this.state.playerTurn);
+        if(this.state.playerTurn === 'X'){
+          this.setState({
+            playerTurn: 'Y'
+          })
+        }
+          else{
+            this.setState({
+              playerTurn: 'X'
+            })
+          };
+        }
+        else{
+          alert("Pick a new Square");
+        }
+      }
+
+
 
   render() {
+
     return (
       <div>
         <div id="board">
           <div className="row">
-            {this.renderSquare(this.state.playerTurn)}
-          {this.renderSquare(3)}
-            {this.renderSquare(2)} />
+            {this.renderMove(this.state.playerTurn)}
+          {this.renderMove(3)}
+            {this.renderMove(2)} />
           </div>
 
 
