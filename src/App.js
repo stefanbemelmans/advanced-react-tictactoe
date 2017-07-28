@@ -12,7 +12,7 @@ class App extends Component {
 
     }
 renderMove(i){
-  return <Square num={i} />
+  return <Square onClick={this.onClick} player={i} />
 
 }
 
