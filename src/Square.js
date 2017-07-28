@@ -7,6 +7,6 @@ export default class Square extends React.Component{
   }
 
   return (
-    <div className="square" onClick={() => props.move(e)}>{props.num}</div>
+    <div className="square" onClick={() => props.handleClick(e)}>{props.num}</div>
   )
 }

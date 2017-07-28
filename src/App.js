@@ -5,20 +5,25 @@ class Game extends Component {
   constructor() {
     super();
     this.state = {
-      playerTurn: 'X'
+      playerTurn: '-'
 
     };
+    this.handleClick = this.handleClick(bind).this;
 
-    move(i)
+  }
+
+  handleClick(e) {
+    console.log(e.target);
   }
   render() {
+
     return (
       <div>
         <div id="board">
           <div className="row">
             <Square num={this.state.playerTurn} />
-            <Square num={1} />
-            <Square num={2} />
+            <Square num={this.state.playerTurn} />
+            <Square num={this.state.playerTurn} />
           </div>
 
 
