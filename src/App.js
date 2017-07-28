@@ -5,17 +5,22 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
+      playerTurn: 'X'
 
-    };
+    }
   }
+  renderSquare(i){
+    return <Square num={i}/>
+  }
+
   render() {
     return (
       <div>
         <div id="board">
           <div className="row">
-            <Square num={0} />
-            <Square num={1} />
-            <Square num={2} />
+            {this.renderSquare(this.state.playerTurn)}
+          {this.renderSquare(3)}
+            {this.renderSquare(2)} />
           </div>
 
 
