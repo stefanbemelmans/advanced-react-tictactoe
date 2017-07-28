@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Square from "./Square";
 
-class App extends Component {
+class Game extends Component {
   constructor() {
     super();
     this.state = {
       playerTurn: 'X'
 
     };
+
+    move(i)
   }
   render() {
     return (
@@ -27,4 +29,4 @@ class App extends Component {
     );
   }
 }
-export default App;
+export default Game;

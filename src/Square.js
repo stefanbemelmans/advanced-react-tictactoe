@@ -1,7 +1,12 @@
 import React from "react";
+import App from "./App";
 
-export default function Square(props) {
+export default class Square extends React.Component{
+  constructor(props){
+    super(props);
+  }
+
   return (
-    <div className="square"></div>
+    <div className="square" onClick={() => props.move(e)}>{props.num}</div>
   )
 }
