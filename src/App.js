@@ -1,27 +1,52 @@
 import React, { Component } from "react";
 import Square from "./Square";
 
-class Game extends Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
-      playerTurn: '-'
+      playerTurn: ''
 
     };
-    this.handleClick = this.handleClick(bind).this;
+    this.onClick = this.onClick.bind(this);
 
-  }
+    }
+renderMove(i){
+  return <Square num={i} />
 
-  handleClick(e) {
-    console.log(e.target);
-  }
+}
+
+    onClick(e) {
+      console.log(e);
+      const pos = e.target.innerHTML;
+      console.log(pos);
+      if(!pos){
+        this.renderMove(this.state.playerTurn);
+        if(this.state.playerTurn === 'X'){
+          this.setState({
+            playerTurn: 'Y'
+          })
+        }
+          else{
+            this.setState({
+              playerTurn: 'X'
+            })
+          };
+        }
+        else{
+          alert("Pick a new Square");
+        }
+      }
+
+
+
   render() {
 
     return (
       <div>
         <div id="board">
           <div className="row">
-            <Square num={this.state.playerTurn} />
+            <Square onClick={this.onClick} num={this.state.playerTurn} />
             <Square num={this.state.playerTurn} />
             <Square num={this.state.playerTurn} />
           </div>
@@ -34,4 +59,4 @@ class Game extends Component {
     );
   }
 }
-export default Game;
+export default App;
