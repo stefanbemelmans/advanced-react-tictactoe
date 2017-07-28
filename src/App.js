@@ -12,6 +12,9 @@ class App extends Component {
   renderSquare(i){
     return <Square num={i}/>
   }
+  clickHandler(target){
+    
+  }
 
   render() {
     return (

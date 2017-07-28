@@ -1,7 +1,9 @@
 import React from "react";
 
+
+
 export default function Square(props) {
   return (
-    <div className="square">{props.num}</div>
+    <div className="square" onClick={props.clickHandler}>{props.num}</div>
   )
 }
