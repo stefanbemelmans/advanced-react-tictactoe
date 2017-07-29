@@ -47,8 +47,8 @@ renderMove(i){
         <div id="board">
           <div className="row">
             <Square onClick={this.onClick} num={this.state.playerTurn} />
-            <Square num={this.state.playerTurn} />
-            <Square num={this.state.playerTurn} />
+            <Square onClick={this.onClick} num={this.state.playerTurn} />
+            <Square onClick={this.onClick} num={this.state.playerTurn} />
           </div>
 
 
