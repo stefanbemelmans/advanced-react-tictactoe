@@ -6,17 +6,17 @@ class App extends Component {
     super();
     this.state = {
       playerTurn: '',
-      board: Array(3)
+      board: Array(3).fill(null)
+
 
     };
     this.onClick = this.onClick.bind(this);
 
     }
+
 renderMove(i){
-    this.setState({
-      board[i] :
-    })
-  return <Square onClick={this.onClick} player={this.state.playerTurn} />
+    
+  return <Square onClick={this.onClick} value={i} />
 
 }
 
@@ -50,9 +50,9 @@ renderMove(i){
       <div>
         <div id="board">
           <div className="row">
-            {this.renderMove(0)(this.state.playerTurn)}
-          {this.renderMove()}
-            {this.renderMove()} />
+            {this.renderMove(0)}
+            {this.renderMove(1)}
+            {this.renderMove(2)}
           </div>
 
 
