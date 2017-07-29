@@ -5,44 +5,58 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      playerTurn: '',
-      board: Array(3).fill(null)
-
-
+      board: Array(3).fill(null),
+      playerTurn: 'X'      
     };
-    this.onClick = this.onClick.bind(this);
+    
 
     }
 
-renderMove(i){
+    makeMove(i) {
+      console.log(i)
+      let temp = this.state.playerTurn;
+      const boardCpy = this.state.board.slice();
+      boardCpy[i] = temp;
+       temp === 'X' ? temp = 'O': temp ='X';
+      this.setState({
+        board: boardCpy,
+        playerTurn: temp 
+      })
+    }
+
+  renderSquare(i){
     
-  return <Square onClick={this.onClick} value={i} />
+    return <Square onClick={() => this.makeMove(i)} value={this.state.board[i]} />
 
-}
+    }
 
-    onClick(e) {
-      console.log(e);
-      const pos = e.target.innerHTML;
-      console.log(pos);
-      if(!pos){
-        this.renderMove(this.state.playerTurn);
-        if(this.state.playerTurn === 'X'){
-          this.setState({
-            playerTurn: 'Y'
-          })
-        }
-          else{
-            this.setState({
-              playerTurn: 'X'
-            })
-          };
-        }
-        else{
-          alert("Pick a new Square");
-        }
-      }
-
-
+  onClick(){
+   
+    this.setState({
+      board: '',
+      playerTurn: 'X'
+    })
+  }
+      
+    //  { // if(!pos){
+    //   //   this.renderMove(this.state.playerTurn);
+    //   //   if(this.state.playerTurn === 'X'){
+    //   //     this.setState({
+    //   //       playerTurn: 'Y'
+    //   //     })
+    //   //   }
+    //   //     else{
+    //   //       this.setState({
+    //   //         playerTurn: 'X'
+    //   //       })
+    //   //     };
+    //   //   }
+    //   //   else{
+    //   //     alert("Pick a new Square");
+    //   //   }
+    //   // }
+    //   }
+    // }
 
   render() {
 
@@ -50,14 +64,14 @@ renderMove(i){
       <div>
         <div id="board">
           <div className="row">
-            {this.renderMove(0)}
-            {this.renderMove(1)}
-            {this.renderMove(2)}
+            {this.renderSquare(0)}
+            {this.renderSquare(1)}
+            {this.renderSquare(2)}
           </div>
 
 
         <div id="announce-winner"></div>
-        <button id="clear">Clear Board</button>
+        <button id="clear" onClick={() => this.onClick}>Clear Board</button>
         </div>
       </div>
     );
