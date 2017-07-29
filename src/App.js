@@ -12,7 +12,7 @@ class App extends Component {
 
     }
 renderMove(i){
-  return <Square num={i} />
+  return <Square onClick={this.onClick} player={i} />
 
 }
 
@@ -46,9 +46,15 @@ renderMove(i){
       <div>
         <div id="board">
           <div className="row">
+<<<<<<< HEAD
             <Square onClick={this.onClick} num={this.state.playerTurn} />
             <Square onClick={this.onClick} num={this.state.playerTurn} />
             <Square onClick={this.onClick} num={this.state.playerTurn} />
+=======
+            {this.renderMove(this.state.playerTurn)}
+          {this.renderMove(3)}
+            {this.renderMove(2)} />
+>>>>>>> ff71eed8fd2f497fbc2042a9855e5fe7fd17592c
           </div>
 
 
