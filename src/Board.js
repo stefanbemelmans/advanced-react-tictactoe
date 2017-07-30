@@ -8,6 +8,9 @@ export default class Board extends React.Component {
       board: new Array(9)
      }
     this.renderSquare = this.renderSquare.bind(this);
+    this.baseState = this.state;
+    // this.reset = this.reset.bind(this);
+    this.winSideways = this.winSideways.bind(this);
   }
   renderSquare(i){
       
@@ -16,7 +19,7 @@ export default class Board extends React.Component {
       }
 
   makeMove(i) {
-      console.log(i)
+      console.log(i+'making thet move');
       let temp = this.state.playerTurn;
       const boardCpy = this.state.board.slice();
       boardCpy[i] = temp;
@@ -24,8 +27,8 @@ export default class Board extends React.Component {
       this.setState({
         board: boardCpy,
       })
-     document.getElementById(board).innerHTML(<Board board={boardCpy} /> )
-      document.getElementById('board')
+     
+     
       if(this.winSideways(temp)){
         this.announceWin(temp);
       }
@@ -58,19 +61,19 @@ export default class Board extends React.Component {
   return(
     <div>
       <div className="row">
-        {props.renderSquare(0)}
-        {props.renderSquare(1)}
-        {props.renderSquare(2)}
+        {this.renderSquare(0)}
+        {this.renderSquare(1)}
+        {this.renderSquare(2)}
       </div>
       <div className="row">
-        {props.renderSquare(3)}
-        {props.renderSquare(4)}
-        {props.renderSquare(5)}
+        {this.renderSquare(3)}
+        {this.renderSquare(4)}
+        {this.renderSquare(5)}
       </div>
       <div className="row">
-        {props.renderSquare(6)}
-        {props.renderSquare(7)}
-        {props.renderSquare(8)}
+        {this.renderSquare(6)}
+        {this.renderSquare(7)}
+        {this.renderSquare(8)}
       </div>
     </div>
   );
