@@ -7,7 +7,7 @@ class App extends Component {
     super(props);
     this.state = {
       // board: new Array(9),
-      playerTurn: 'X'      
+      // playerTurn: 'X'      
     
     };
     // this.baseState = this.state;
@@ -95,9 +95,8 @@ class App extends Component {
 
     return (
       <div id="board">
-        <Board board={this.state.board} renderSquare={this.renderSquare} />
-        <div id="announce-winner"></div>
-        <button id="clear" onClick={this.reset}>Clear Board</button>
+        <Board />
+       
       </div>
       
     );

@@ -5,37 +5,41 @@ export default class Board extends React.Component {
   constructor(props){
     super(props);
     this.state ={
-      board: new Array(9)
+      board: new Array(9),
+      playerTurn: 'X'
      }
     this.renderSquare = this.renderSquare.bind(this);
     this.baseState = this.state;
-    // this.reset = this.reset.bind(this);
+    this.reset = this.reset.bind(this);
     this.winSideways = this.winSideways.bind(this);
   }
+  
   renderSquare(i){
-      
-      return <Square onClick={() => this.makeMove(i)} value={this.state.board[i]} />
-
-      }
+    return <Square onClick={() => this.makeMove(i)} value={this.state.board[i]} />
+  }
+  
+  reset(){
+    console.log("resetme!");
+    this.setState(this.baseState)
+    document.getElementById("announce-winner").innerHTML="";
+  }
 
   makeMove(i) {
-      console.log(i+'making thet move');
-      let temp = this.state.playerTurn;
+      console.log('making thet move');
+      let turnTemp = this.state.playerTurn;
       const boardCpy = this.state.board.slice();
-      boardCpy[i] = temp;
+      boardCpy[i] = turnTemp;
      
       this.setState({
         board: boardCpy,
       })
-     
-     
-      if(this.winSideways(temp)){
-        this.announceWin(temp);
+      if(this.winSideways(turnTemp)){
+        this.announceWin(turnTemp);
       }
       else{
-        temp === 'X' ? temp = 'O': temp ='X';
+        turnTemp === 'X' ? turnTemp = 'O': turnTemp ='X';
         this.setState({
-          playerTurn: temp
+          playerTurn: turnTemp
         })
       }
     
@@ -52,7 +56,7 @@ export default class Board extends React.Component {
 
   announceWin(player){
     console.log('hello')
-    document.getElementById('announce-winner').innerHTML(player + 'Wins!')
+    document.getElementById('announce-winner').innerHTML="{player} + 'Wins!'";
   }
 
   render(){
@@ -75,6 +79,8 @@ export default class Board extends React.Component {
         {this.renderSquare(7)}
         {this.renderSquare(8)}
       </div>
+       <div id="announce-winner"></div>
+       <button id="clear" onClick={this.reset}>Clear Board</button>
     </div>
   );
 
