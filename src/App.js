@@ -5,7 +5,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      board: Array(9).fill(null),
+      board: new Array(9),
       playerTurn: 'X'      
     
     };
@@ -14,19 +14,7 @@ class App extends Component {
     this.winSideways = this.winSideways.bind(this);
     }
 
-    makeMove(i) {
-      console.log(i)
-      let temp = this.state.playerTurn;
-      const boardCpy = this.state.board.slice();
-      boardCpy[i] = temp;
-     this.winSideways(this.state.playerTurn)
-       temp === 'X' ? temp = 'O': temp ='X';
-      this.setState({
-        board: boardCpy,
-        playerTurn: temp 
-      })
-     
-    }
+    
 
     renderSquare(i){
       
@@ -44,16 +32,40 @@ class App extends Component {
         
     }
      
-    winSideways(playerTurn) {
+    winSideways() {
       let board = this.state.board;
 
       for(let i =0; i<3; i++){
-        if(board[i] && board[i+3] &&board[i+6] === playerTurn){
-          alert('playerTurn +"Wins"')   
+        if(board[i] && board[i+3] &&board[i+6] === this.state.playerTurn){
+            return true;
         }
-       
       }
+    }
 
+    announceWin(player){
+      console.log('hello')
+      document.getElementById('announce-winner').innerHTML(player + 'Wins!')
+    }
+
+    makeMove(i) {
+      console.log(i)
+      let temp = this.state.playerTurn;
+      const boardCpy = this.state.board.slice();
+      boardCpy[i] = temp;
+     
+      this.setState({
+        board: boardCpy,
+      })
+      if(this.winSideways(this.state.playerTurn)){
+        this.announceWin(this.state.playerTurn)
+      }
+      else{
+        temp === 'X' ? temp = 'O': temp ='X';
+        this.setState({
+          playerTurn: temp
+        })
+      }
+    
     }
     // if(!pos){
     //   this.renderMove(this.state.playerTurn);
