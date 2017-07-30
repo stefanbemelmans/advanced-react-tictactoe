@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Square from "./Square";
+import Board from "./Board";
 
 class App extends Component {
   constructor(props) {
@@ -32,11 +33,11 @@ class App extends Component {
         
     }
      
-    winSideways() {
+    winSideways(player) {
       let board = this.state.board;
-
+    //  let turn = this.state.playerTurn;
       for(let i =0; i<3; i++){
-        if(board[i] && board[i+3] &&board[i+6] === this.state.playerTurn){
+        if(board[i] === player && board[i+3] === player && board[i+6] === player){
             return true;
         }
       }
@@ -56,8 +57,9 @@ class App extends Component {
       this.setState({
         board: boardCpy,
       })
-      if(this.winSideways(this.state.playerTurn)){
-        this.announceWin(this.state.playerTurn)
+      document.getElementById('board')
+      if(this.winSideways(temp)){
+        this.announceWin(temp);
       }
       else{
         temp === 'X' ? temp = 'O': temp ='X';
@@ -90,22 +92,7 @@ class App extends Component {
 
     return (
       <div>
-        <div id="board">
-          <div className="row">
-            {this.renderSquare(0)}
-            {this.renderSquare(1)}
-            {this.renderSquare(2)}
-          </div>
-          <div className="row">
-            {this.renderSquare(3)}
-            {this.renderSquare(4)}
-            {this.renderSquare(5)}
-          </div>
-          <div className="row">
-            {this.renderSquare(6)}
-            {this.renderSquare(7)}
-            {this.renderSquare(8)}
-          </div>
+        <Board board={this.state.board} renderSquare={this.renderSquare} />
         <div id="announce-winner"></div>
         <button id="clear" onClick={this.reset}>Clear Board</button>
         </div>
