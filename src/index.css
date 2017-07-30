@@ -9,7 +9,10 @@ body {
 }
 .square {
 
-    background: #fff;
+  background: -webkit-linear-gradient(bottom, blue, #76d976 40%, #780606);
+  background: -moz-linear-gradient(bottom, blue, #76d976 40%, #780606);
+  background: -o-linear-gradient(bottom, blue, #76d976 40%, #780606);
+  background: linear-gradient(to top, blue, #76d976 40%, #780606);
     border: 1px solid #999;
     float: left;
     font-size: 24px;
