@@ -12,6 +12,7 @@ export default class Board extends React.Component {
     this.baseState = this.state;
     this.reset = this.reset.bind(this);
     this.winSideways = this.winSideways.bind(this);
+    this.makeMove = this.makeMove.bind(this);
   }
   
   renderSquare(i){
@@ -28,40 +29,41 @@ export default class Board extends React.Component {
       console.log('making thet move');
       let turnTemp = this.state.playerTurn;
       const boardCpy = this.state.board.slice();
-      boardCpy[i] = turnTemp;
-     
-      this.setState({
-        board: boardCpy,
-      })
-      if(this.winSideways(turnTemp)){
-        this.announceWin(turnTemp);
+      if(this.winSideways(turnTemp) || boardCpy[i]){
+        alert('Pick a new Square!')
       }
       else{
-        turnTemp === 'X' ? turnTemp = 'O': turnTemp ='X';
-        this.setState({
-          playerTurn: turnTemp
+      boardCpy[i] = turnTemp;
+      turnTemp === 'X' ? turnTemp = 'O' : turnTemp = 'X';
+      
+      this.setState({
+        board: boardCpy,
+        playerTurn: turnTemp
         })
-      }
-    
     }
+  }
   winSideways(player) {
       let board = this.state.board;
     //  let turn = this.state.playerTurn;
       for(let i =0; i<3; i++){
         if(board[i] === player && board[i+3] === player && board[i+6] === player){
-            return true;
+          console.log("Winner");  
+          return true;
         }
       }
     }
 
   announceWin(player){
-    console.log('hello')
-    document.getElementById('announce-winner').innerHTML="{player} + 'Wins!'";
+    console.log('hello');
+    // document.getElementById("announce-winner").innerHTML={player}+' Wins!';
   }
+  
 
   render(){
-
-
+      if(this.winSideways(this.state.playerTurn)){
+        this.announceWin(this.state.playerTurn);
+        }
+                
   return(
     <div>
       <div className="row">
@@ -82,9 +84,9 @@ export default class Board extends React.Component {
        <div id="announce-winner"></div>
        <button id="clear" onClick={this.reset}>Clear Board</button>
     </div>
-  );
-
-}
+    );
+    
+  };
 }
 
 
