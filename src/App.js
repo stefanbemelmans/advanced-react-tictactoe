@@ -96,7 +96,7 @@ class App extends Component {
     return (
       <div id="board">
         <Board />
-       
+       <div id="announce-winner"></div>
       </div>
       
     );
