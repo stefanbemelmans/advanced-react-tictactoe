@@ -85,6 +85,7 @@ winSideways(squares) {
                 
   return(
     <div>
+      <div>{this.state.playerTurn}'s Turn</div>
       <div className="row">
         {this.renderSquare(0)}
         {this.renderSquare(1)}
