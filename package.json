@@ -1,8 +1,8 @@
 {
-  "name": "advanced-hangman-game",
-  "homepage": "https://<github-username>.github.io/advanced-hangman-game",
+  "name": "advanced-react-tictactoe",
+  "homepage": "https://stefanbememlmans.github.io/advanced-react-tictactoe",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "react": "^15.5.3",
     "react-dom": "^15.5.3"
